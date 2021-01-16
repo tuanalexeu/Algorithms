@@ -1,9 +1,6 @@
-package com.company;
+package com.company.algorithms;
 
-import java.awt.*;
-import java.lang.reflect.Array;
-import java.util.Arrays;
-import java.util.Random;
+import com.company.algorithms.ArraySort;
 
 public class Main {
 

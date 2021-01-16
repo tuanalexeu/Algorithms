@@ -1,7 +1,5 @@
-package com.company;
+package com.company.algorithms;
 
-
-import java.awt.image.renderable.RenderableImage;
 
 public class ArraySort {
 

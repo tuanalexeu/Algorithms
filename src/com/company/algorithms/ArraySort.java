@@ -1,6 +1,10 @@
 package com.company.algorithms;
 
 
+import java.util.Arrays;
+
+import static com.company.algorithms.ArraySortingTools.countElements;
+
 public class ArraySort {
 
     ArraySortingTools ast = new ArraySortingTools();
@@ -131,7 +135,7 @@ public class ArraySort {
     public void quickSort(int[] N, int from, int to) {
 
         if(from < to) {
-            int divideIndex = ast.parition(N, from, to);
+            int divideIndex = ast.partition(N, from, to);
             quickSort(N, from, divideIndex - 1);
             quickSort(N, divideIndex, to);
         }
@@ -177,6 +181,26 @@ public class ArraySort {
         ast.printArray("Selection Sort ", N);
     }
 
+    /** Counting sort **/
+    public static int[] countingSort(int[] A) {
+        int k = 0;
+        for (int i = 0; i < A.length; i++) {
+            if(A[i] > k) {
+                k = A[i];
+            }
+        }
+        int[] c = countElements(A, k);
+
+        int[] sorted = new int[A.length];
+        for (int i = A.length - 1; i >= 0; i--) {
+            int current = A[i];
+            sorted[c[current] - 1] = current;
+            c[current] -= 1;
+        }
+
+        return sorted;
+    }
+
 }
 
 class ArraySortingTools {
@@ -193,7 +217,7 @@ class ArraySortingTools {
         return gap;
     }
 
-    public int parition(int[] N, int from, int to) {
+    public int partition(int[] N, int from, int to) {
         int rightIndex = to;
         int leftIndex = from;
 
@@ -239,5 +263,20 @@ class ArraySortingTools {
                 index2++;
             }
         }
+    }
+
+    public static int[] countElements(int[] A, int k) {
+        int[] c = new int[k + 1];
+        Arrays.fill(c, 0);
+
+        for (int i : A) {
+            c[i] += 1;
+        }
+
+        for (int i = 1; i < c.length; i++) {
+            c[i] += c[i - 1];
+        }
+
+        return c;
     }
 }

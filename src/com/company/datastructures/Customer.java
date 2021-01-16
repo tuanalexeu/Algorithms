@@ -13,6 +13,6 @@ public class Customer implements Comparable<Customer> {
 
     @Override
     public int compareTo(Customer o) {
-        return priority < o.priority ? -1 : (priority == o.priority ? 0 : 1);
+        return Integer.compare(priority, o.priority);
     }
 }

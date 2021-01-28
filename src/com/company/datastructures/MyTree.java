@@ -20,6 +20,30 @@ public class MyTree {
         this.key = key;
     }
 
+    public void inOrderTreeWalk(MyTree node) {
+        if(node != null) {
+            inOrderTreeWalk(node.left);
+            // do something with current node
+            inOrderTreeWalk(node.right);
+        }
+    }
+
+    public void preOrderTreeWalk(MyTree node) {
+        if(node != null) {
+            // do something with current node
+            preOrderTreeWalk(node.left);
+            preOrderTreeWalk(node.right);
+        }
+    }
+
+    public void postOrderTreeWalk(MyTree node) {
+        if(node != null) {
+            postOrderTreeWalk(node.left);
+            postOrderTreeWalk(node.right);
+            // do something with current node
+        }
+    }
+
     public MyTree searchRecursive(MyTree node, int key) {
         if(node == null || key == node.key) {
             return node;

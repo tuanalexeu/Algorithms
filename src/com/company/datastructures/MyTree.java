@@ -28,6 +28,17 @@ public class MyTree {
         }
     }
 
+    public void alternativeInOrderTreeWalk(MyTree node) {
+        // Find the minimum node
+        node = minRecursive(node);
+
+        // With each iteration find the next minimum node and do something with it
+        node = successor(node);
+        while (node != null) {
+            node = successor(node);
+        }
+    }
+
     public void preOrderTreeWalk(MyTree node) {
         if(node != null) {
             // do something with current node

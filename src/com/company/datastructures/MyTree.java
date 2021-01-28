@@ -19,6 +19,7 @@ public class MyTree {
     public MyTree(int key) {
         this.key = key;
     }
+
     public MyTree searchRecursive(MyTree node, int key) {
         if(node == null || key == node.key) {
             return node;
@@ -42,23 +43,37 @@ public class MyTree {
         return node;
     }
 
-    public MyTree min(MyTree node) {
+    public MyTree minIterative(MyTree node) {
         while (node.left != null) {
             node = node.left;
         }
         return node;
     }
 
-    public MyTree max(MyTree node) {
+    public MyTree minRecursive(MyTree node) {
+        if(node.left != null) {
+            return minRecursive(node.left);
+        }
+        return node;
+    }
+
+    public MyTree maxIterative(MyTree node) {
         while (node.right != null) {
             node = node.right;
         }
         return node;
     }
 
+    public MyTree maxRecursive(MyTree node) {
+        if(node.right != null) {
+            return maxRecursive(node);
+        }
+        return node;
+    }
+
     public MyTree successor(MyTree node) {
         if (node.right != null) {
-            return min(node.right);
+            return minIterative(node.right);
         }
         MyTree current = node.parent;
         while (current != null && node == current.right) {
@@ -70,7 +85,7 @@ public class MyTree {
 
     public MyTree predecessor(MyTree node) {
         if(node.left != null) {
-            return max(node.left);
+            return maxIterative(node.left);
         }
         MyTree current = node.parent;
         while(current != null && node == current.left) {

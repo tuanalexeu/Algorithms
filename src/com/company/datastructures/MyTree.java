@@ -57,11 +57,23 @@ public class MyTree {
     }
 
     public MyTree successor(MyTree node) {
-        if(node.right != null) {
+        if (node.right != null) {
             return min(node.right);
         }
         MyTree current = node.parent;
         while (current != null && node == current.right) {
+            node = current;
+            current = current.parent;
+        }
+        return current;
+    }
+
+    public MyTree predecessor(MyTree node) {
+        if(node.left != null) {
+            return max(node.left);
+        }
+        MyTree current = node.parent;
+        while(current != null && node == current.left) {
             node = current;
             current = current.parent;
         }

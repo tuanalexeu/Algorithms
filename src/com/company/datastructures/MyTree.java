@@ -1,9 +1,9 @@
 package com.company.datastructures;
 
 public class MyTree {
-    MyTree left, right;
-    int key;
 
+    private MyTree left, right, parent;
+    private int key;
 
     public MyTree(MyTree left, MyTree right, int key) {
         this.left = left;
@@ -11,10 +11,14 @@ public class MyTree {
         this.key = key;
     }
 
-    public MyTree(int key) {
+    public MyTree(MyTree parent, int key) {
+        this.parent = parent;
         this.key = key;
     }
 
+    public MyTree(int key) {
+        this.key = key;
+    }
     public MyTree searchRecursive(MyTree node, int key) {
         if(node == null || key == node.key) {
             return node;
@@ -36,6 +40,32 @@ public class MyTree {
             }
         }
         return node;
+    }
+
+    public MyTree min(MyTree node) {
+        while (node.left != null) {
+            node = node.left;
+        }
+        return node;
+    }
+
+    public MyTree max(MyTree node) {
+        while (node.right != null) {
+            node = node.right;
+        }
+        return node;
+    }
+
+    public MyTree successor(MyTree node) {
+        if(node.right != null) {
+            return min(node.right);
+        }
+        MyTree current = node.parent;
+        while (current != null && node == current.right) {
+            node = current;
+            current = current.parent;
+        }
+        return current;
     }
 
     public static int sumRecursive(MyTree root) {

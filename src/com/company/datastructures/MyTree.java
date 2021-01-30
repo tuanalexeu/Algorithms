@@ -230,6 +230,25 @@ public class MyTree {
         }
     }
 
+    // Вместо successor ищем predecessor
+    public void alternativeDelete(MyTree root, MyTree z) {
+        if(z.left == null) {
+            transplant(root, z, z.right);
+        } else if(z.right == null) {
+            transplant(root, z, z.left);
+        } else {
+            MyTree y = maxRecursive(z.left);
+            if(y.parent != z) {
+                transplant(root, y, y.left);
+                y.left = z.left;
+                y.left.parent = y;
+            }
+            transplant(root, z, y);
+            y.right = z.right;
+            y.right.parent = y;
+        }
+    }
+
     public void transplant(MyTree root, MyTree u, MyTree v) {
         if(u.parent == null) {
             root = v;

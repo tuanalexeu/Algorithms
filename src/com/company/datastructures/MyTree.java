@@ -200,5 +200,37 @@ public class MyTree {
         }
     }
 
+    public void delete(MyTree root, MyTree z) {
+        if(z.left == null) {
+            transplant(root, z, z.right);
+        } else if(z.right == null) {
+            transplant(root, z, z.left);
+        } else {
+            MyTree y = minRecursive(z.right);
+            if(y.parent != null) {
+                transplant(root, y, y.right);
+                y.right = z.right;
+                y.right.parent = y;
+            }
+            transplant(root, z, y);
+            y.left = z.left;
+            y.left.parent = y;
+        }
+    }
+
+    public void transplant(MyTree root, MyTree u, MyTree v) {
+        if(u.parent == null) {
+            root = v;
+        } else if(u == u.parent.left) {
+            u.parent.left = v;
+        } else {
+            u.parent.right = v;
+        }
+
+        if(v != null) {
+            v.parent = u.parent;
+        }
+    }
+
 
 }

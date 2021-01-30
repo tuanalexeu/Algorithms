@@ -1,4 +1,4 @@
-package com.company.algorithms;
+package com.company;
 
 import com.company.algorithms.ArraySort;
 

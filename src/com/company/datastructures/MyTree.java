@@ -200,6 +200,18 @@ public class MyTree {
         }
     }
 
+    public void insertRecursive(MyTree node, MyTree z) {
+        if(node == null) {
+            node = z;
+        } else {
+            if(z.key < node.key) {
+                insertRecursive(node.left, z);
+            } else {
+                insertRecursive(node.right, z);
+            }
+        }
+    }
+
     public void delete(MyTree root, MyTree z) {
         if(z.left == null) {
             transplant(root, z, z.right);
@@ -207,7 +219,7 @@ public class MyTree {
             transplant(root, z, z.left);
         } else {
             MyTree y = minRecursive(z.right);
-            if(y.parent != null) {
+            if(y.parent != z) {
                 transplant(root, y, y.right);
                 y.right = z.right;
                 y.right.parent = y;

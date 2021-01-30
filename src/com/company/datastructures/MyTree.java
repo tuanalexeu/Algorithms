@@ -130,7 +130,7 @@ public class MyTree {
         return current;
     }
 
-    public static int sumRecursive(MyTree root) {
+    public int sumRecursive(MyTree root) {
         int sum = root.key;
 
         if(root.left != null) {
@@ -142,7 +142,7 @@ public class MyTree {
         return sum;
     }
 
-    public static int sumDeep(MyTree root) {
+    public int sumDeep(MyTree root) {
         SimpleStack<MyTree> stack = new SimpleStack<>();
         stack.push(root);
         int sum = 0;
@@ -160,7 +160,7 @@ public class MyTree {
         return sum;
     }
 
-    public static int sumWide(MyTree root) {
+    public int sumWide(MyTree root) {
         SimpleQueue<MyTree> stack = new SimpleQueue<>();
         stack.add(root);
         int sum = 0;
@@ -177,4 +177,28 @@ public class MyTree {
         }
         return sum;
     }
+
+    public void insert(MyTree root, MyTree z) {
+        MyTree y = null;
+        MyTree x = root;
+
+        while (x != null) {
+            y = x;
+            if(z.key < x.key) {
+                x = x.left;
+            } else {
+                x = x.right;
+            }
+        }
+        z.parent = y;
+        if(y == null) {
+            root = z; // Если дерево было пустым
+        } else if(z.key < y.key) {
+            y.left = z;
+        } else {
+            y.right = z;
+        }
+    }
+
+
 }

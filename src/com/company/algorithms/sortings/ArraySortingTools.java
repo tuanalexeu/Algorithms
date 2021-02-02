@@ -43,6 +43,17 @@ public class ArraySortingTools {
         array[index2] = tmp;
     }
 
+    /**
+     * Метод слияния двух массивов.
+     * Служит как вспомогательный инструмент для сортировки слиянием.
+     * @param src1 - Первый массив
+     * @param src1Start - Индекс начала первого массива
+     * @param src2 - Втором массив
+     * @param src2Start - Индекс начала второго массива
+     * @param dest - Массив, который будет результатом слияния
+     * @param destStart - Индекс начала результирующего массива
+     * @param size - количество элементов для слияния
+     */
     public static void merge(int[] src1, int src1Start, int[] src2, int src2Start, int[] dest,
                              int destStart, int size) {
         int index1 = src1Start;
@@ -62,6 +73,40 @@ public class ArraySortingTools {
                 index2++;
             }
         }
+    }
+
+    /**
+     * Метод слияния двух массивов.
+     * Служит как вспомогательный инструмент для сортировки слиянием.
+     * @param A - Исходный массив
+     * @param p - индекс начала первого подмассива
+     * @param q - индекс конца первого подмассива
+     * @param r - индекс конца второго подмассива
+     */
+    public static void merge(int[] A, int p, int q, int r) {
+        int n1 = q - p + 1; // Вычисляем размер первого подмассива
+        int n2 = r - q; // И второго
+
+        int[] L = new int[n1 + 1]; // Left subarray
+        int[] R = new int[n2 + 1]; // Right subarray
+
+        System.arraycopy(A, p, L, 0, n1);
+        System.arraycopy(A, q + 1, R, 0, n2);
+
+        L[L.length - 1] = Integer.MAX_VALUE;
+        R[R.length - 1] = Integer.MAX_VALUE;
+
+        int i = 0, j = 0;
+        for (int k = p; k <= r; k++) {
+            if(L[i] <= R[j]) {
+                A[k] = L[i];
+                i++;
+            } else {
+                A[k] = R[j];
+                j++;
+            }
+        }
+
     }
 
     public static int[] countElements(int[] A, int k) {

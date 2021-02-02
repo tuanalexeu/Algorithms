@@ -96,7 +96,7 @@ public class ArraySort {
      * Сложность O(n^2) или n(n-1)/2
      * Эффективно работает для небольшых массивов
      * или массивов, которые уже частично отсортированы
-     * @param N
+     * @param N - Входной набор
      */
     public void insertSort(int... N) {
         for (int j = 1; j < N.length; j++) {
@@ -170,6 +170,25 @@ public class ArraySort {
         ast.printArray("Merge Sort ", currentSrc);
     }
 
+
+    /**
+     * Сортировка слиянием, работает по принципу "Разделяй и властвуй"
+     * Хорошо подходит для больших массивов, не имеет значения насколько они отсортированны.
+     * Требует доп. памяти для хранения промежуточных данных
+     * O(ln(n)*n)
+     * @param A
+     * @param p
+     * @param r
+     */
+    public void simpleMergeSort(int[] A, int p, int r) {
+        if(p < r) {
+            int q = (p + r) / 2;
+            simpleMergeSort(A, p, q);
+            simpleMergeSort(A, q+1, r);
+            ArraySortingTools.merge(A, p, q, r);
+        }
+    }
+
     /** Selection Sort **/
     public void selectionSort(int[] N) {
         for (int i = 0; i < N.length-1; i++) {
@@ -190,9 +209,9 @@ public class ArraySort {
     /** Counting sort **/
     public static int[] countingSort(int[] A) {
         int k = 0;
-        for (int i = 0; i < A.length; i++) {
-            if(A[i] > k) {
-                k = A[i];
+        for (int j : A) {
+            if (j > k) {
+                k = j;
             }
         }
         int[] c = countElements(A, k);

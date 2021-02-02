@@ -1,4 +1,4 @@
-package com.company.algorithms;
+package com.company.datastructures;
 
 import java.util.Random;
 

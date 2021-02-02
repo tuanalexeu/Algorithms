@@ -1,6 +1,6 @@
 package com.company.datastructures;
 
-import com.company.algorithms.MyQuickSort;
+import com.company.algorithms.sortings.MyQuickSort;
 
 import java.util.Arrays;
 import java.util.Random;

@@ -1,4 +1,4 @@
-package com.company.algorithms;
+package com.company.datastructures;
 
 public class TwoTuple<A,B> {
     private A max;

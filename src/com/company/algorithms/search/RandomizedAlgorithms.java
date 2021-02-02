@@ -1,4 +1,4 @@
-package com.company.algorithms;
+package com.company.algorithms.search;
 
 import java.util.*;
 
@@ -39,7 +39,7 @@ public class RandomizedAlgorithms {
             int current = rand.nextInt(n);
             if(N[current] == k) {
                 return current;
-            } else if(map.get(current) == true) {
+            } else if(map.get(current)) {
                 map.put(current, false);
                 f--;
             }

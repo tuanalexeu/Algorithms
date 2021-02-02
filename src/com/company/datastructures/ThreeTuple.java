@@ -1,4 +1,4 @@
-package com.company.algorithms;
+package com.company.datastructures;
 
 public class ThreeTuple<A,B,C> {
     public final A low;

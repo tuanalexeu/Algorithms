@@ -1,10 +1,12 @@
-package com.company.algorithms;
+package com.company.datastructures;
+
+import com.company.datastructures.TwoTuple;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class SetAlgorithms {
+public class Set {
     public static void grayCode(int n) {
         ArrayList<String> list = new ArrayList<>();
         list.add("0");
@@ -54,11 +56,11 @@ public class SetAlgorithms {
     }
 
     public static int max(int a, int b) {
-        return a > b ? a : b;
+        return Math.max(a, b);
     }
 
     public static int min(int a, int b) {
-        return a < b ? a : b;
+        return Math.min(a, b);
     }
 
     public static TwoTuple<Integer,Integer> findMinMax(int[] A, int i, int max, int min) {

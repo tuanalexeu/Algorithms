@@ -1,6 +1,6 @@
-package com.company;
+package com.company.algorithms.sortings;
 
-import com.company.algorithms.ArraySort;
+import com.company.algorithms.sortings.ArraySort;
 
 public class Main {
 

@@ -1,5 +1,7 @@
-package com.company.algorithms;
+package com.company.algorithms.search;
 
+
+import com.company.datastructures.ThreeTuple;
 
 public class SubarraySearchAlgorithm {
     public ThreeTuple<Integer, Integer, Integer> findMaxCrossingSubarray(int[] N, int low, int mid, int high) {

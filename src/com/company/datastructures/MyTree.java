@@ -20,6 +20,38 @@ public class MyTree {
         this.key = key;
     }
 
+    public MyTree getLeft() {
+        return left;
+    }
+
+    public void setLeft(MyTree left) {
+        this.left = left;
+    }
+
+    public MyTree getRight() {
+        return right;
+    }
+
+    public void setRight(MyTree right) {
+        this.right = right;
+    }
+
+    public MyTree getParent() {
+        return parent;
+    }
+
+    public void setParent(MyTree parent) {
+        this.parent = parent;
+    }
+
+    public int getKey() {
+        return key;
+    }
+
+    public void setKey(int key) {
+        this.key = key;
+    }
+
     public void inOrderTreeWalk(MyTree node) {
         if(node != null) {
             inOrderTreeWalk(node.left);

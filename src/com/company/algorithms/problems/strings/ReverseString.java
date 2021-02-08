@@ -17,7 +17,13 @@ public class ReverseString {
         if(s.length() < 2) {
             return s;
         }
-
         return reverseRecursive(s.substring(1)) + s.charAt(0);
     }
+
+    public static boolean isPalindrome(String s) {
+        String reverse = reverseRecursive(s);
+
+        return reverse.equals(s);
+    }
+
 }

@@ -1,4 +1,4 @@
-package com.company.algorithms.problems;
+package com.company.algorithms.problems.arrays;
 
 public class MissingNumber {
     public static int findMissing(int[] arr) {

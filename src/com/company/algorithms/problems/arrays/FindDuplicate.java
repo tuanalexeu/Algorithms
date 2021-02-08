@@ -1,4 +1,4 @@
-package com.company.algorithms.problems;
+package com.company.algorithms.problems.arrays;
 
 public class FindDuplicate {
     public static int findDuplicate(int[] arr) {

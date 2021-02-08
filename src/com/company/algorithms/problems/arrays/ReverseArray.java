@@ -1,4 +1,4 @@
-package com.company.algorithms.problems;
+package com.company.algorithms.problems.arrays;
 
 import java.util.Arrays;
 

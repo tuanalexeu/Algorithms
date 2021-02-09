@@ -8,17 +8,16 @@ public class ArraySort {
 
     /** Bubble Sort **/
     public void  bubbleSort(int... N) {
-        for (int i = 0; i < N.length-1 ; i++) {
-            for (int j = 0; j <N.length-i-1 ; j++) {
-                if(N[j]>N[j+1]) {
-                    int c = N[j];
-                    N[j] = N[j+1];
-                    N[j+1] = c;
+        for (int i = 0; i < N.length; i++) {
+            for (int j = N.length - 1; j > i; j--) {
+                if(N[j] < N[j-1]) {
+                    N[j] = (N[j] + N[j-1]) - (N[j-1] = N[j]);
                 }
             }
         }
         ast.printArray("Bubble Sort", N);
     }
+
     /** Cocktail Sort **/
     public void cocktailSort(int... N) {
         boolean isSwapped = true;
@@ -98,17 +97,20 @@ public class ArraySort {
      * или массивов, которые уже частично отсортированы
      * @param N - Входной набор
      */
-    public void insertSort(int... N) {
-        for (int j = 1; j < N.length; j++) {
-            int key = N[j];
+    public void insertSort(int[] N) {
+        for (int i = 1; i < N.length; i++) {
+            int key = N[i];
 
-            int i = j - 1;
-            while (i >= 0 && N[i] > key) {
-                N[i+1] = N[i];
-                i--;
+            int j = i-1;
+
+            while (j>=0 && N[j] > key) {
+                N[j+1] = N[j];
+                j--;
             }
-            N[i+1] = key;
+
+            N[j+1] = key;
         }
+
         ast.printArray("Insertion sort", N);
     }
 

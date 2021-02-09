@@ -79,6 +79,22 @@ public class MyTree {
         }
     }
 
+    public void preOrderTreeWalkIterative(MyTree node) {
+        Stack<MyTree> nodes = new SimpleStack<>();
+        nodes.push(node);
+
+        while (!nodes.isEmpty()) {
+            MyTree current = nodes.pop();
+            System.out.println(current.getKey());
+            if(current.right != null) {
+                nodes.push(current.right);
+            }
+            if (current.left != null) {
+                nodes.push(current.left);
+            }
+        }
+    }
+
     public void postOrderTreeWalk(MyTree node) {
         if(node != null) {
             postOrderTreeWalk(node.left);
@@ -88,19 +104,18 @@ public class MyTree {
     }
 
     public MyTree searchRecursive(MyTree node, int key) {
-        if(node == null || key == node.key) {
+        if(node == null || node.key == key) {
             return node;
         }
-
         if(key < node.key) {
-            return searchRecursive(node.left, key);
+            return searchIterative(node.left, key);
         } else {
-            return searchRecursive(node.right, key);
+            return searchIterative(node.right, key);
         }
     }
 
     public MyTree searchIterative(MyTree node, int key) {
-        while(node != null && key != node.key) {
+        while (node != null && key != node.key) {
             if(key < node.key) {
                 node = node.left;
             } else {
@@ -139,9 +154,10 @@ public class MyTree {
     }
 
     public MyTree successor(MyTree node) {
-        if (node.right != null) {
-            return minIterative(node.right);
+        if(node.right != null) {
+            return minRecursive(node);
         }
+
         MyTree current = node.parent;
         while (current != null && node == current.right) {
             node = current;
@@ -152,10 +168,11 @@ public class MyTree {
 
     public MyTree predecessor(MyTree node) {
         if(node.left != null) {
-            return maxIterative(node.left);
+            return maxRecursive(node);
         }
         MyTree current = node.parent;
-        while(current != null && node == current.left) {
+
+        while (current != null && node == current.left) {
             node = current;
             current = current.parent;
         }
@@ -175,60 +192,66 @@ public class MyTree {
     }
 
     public int sumDeep(MyTree root) {
-        SimpleStack<MyTree> stack = new SimpleStack<>();
-        stack.push(root);
+        Stack<MyTree> nodes = new SimpleStack<>();
+        nodes.push(root);
+
         int sum = 0;
 
-        while (!stack.isEmpty()) {
-            MyTree node = stack.pop();
-            sum += node.key;
-            if (node.right != null) {
-                stack.push(node.right);
+        while (!nodes.isEmpty()) {
+            MyTree current = nodes.pop();
+            sum += current.key;
+
+            if(current.right != null) {
+                nodes.push(current.right);
             }
-            if (node.left != null) {
-                stack.push(node.left);
+            if(current.left != null) {
+                nodes.push(current.left);
             }
         }
         return sum;
     }
 
     public int sumWide(MyTree root) {
-        SimpleQueue<MyTree> stack = new SimpleQueue<>();
-        stack.add(root);
+        Queue<MyTree> nodes = new SimpleQueue<>();
+        nodes.add(root);
+
         int sum = 0;
 
-        while (!stack.isEmpty()) {
-            MyTree node = stack.remove();
-            sum += node.key;
-            if (node.right != null) {
-                stack.add(node.right);
+        while (!nodes.isEmpty()) {
+            MyTree current = nodes.remove();
+            sum += current.key;
+
+            if(current.left != null) {
+                nodes.add(current.left);
             }
-            if (node.left != null) {
-                stack.add(node.left);
+            if(current.right != null) {
+                nodes.add(current.right);
             }
         }
         return sum;
     }
 
-    public void insert(MyTree root, MyTree z) {
-        MyTree y = null;
-        MyTree x = root;
+    public void insert(MyTree root, MyTree node) {
+        MyTree curParent = null;
+        MyTree cur = root;
 
-        while (x != null) {
-            y = x;
-            if(z.key < x.key) {
-                x = x.left;
+        while (cur != null) {
+            curParent = cur;
+            if(node.key < cur.key) {
+                cur = cur.left;
             } else {
-                x = x.right;
+                cur = cur.right;
             }
         }
-        z.parent = y;
-        if(y == null) {
-            root = z; // Если дерево было пустым
-        } else if(z.key < y.key) {
-            y.left = z;
+
+        node.parent = curParent;
+
+        if(curParent == null) {
+            root = node;
+        } else if(node.key < curParent.key) {
+            curParent.left = node;
         } else {
-            y.right = z;
+            curParent.right = node;
         }
     }
 

@@ -194,7 +194,6 @@ public class ArraySort {
     /** Selection Sort **/
     public void selectionSort(int[] N) {
         for (int i = 0; i < N.length-1; i++) {
-            int max = -999999;
             int index = i;
             for (int j = i+1; j <N.length ; j++) {
                 if (N[j] < N[index]) {

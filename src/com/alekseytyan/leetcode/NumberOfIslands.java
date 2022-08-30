@@ -46,7 +46,7 @@ public class NumberOfIslands {
     }
 
     private static void visit(int i, int j, char[][] grid) {
-        if(i < 0 || i >= grid.length || j < 0 || j >= grid[i].length) {
+        if(i < 0 || i >= grid.length || j < 0 || j >= grid[i].length || grid[i][j] != '1') {
             return;
         }
 

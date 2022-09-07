@@ -40,16 +40,15 @@ public class BinaryTreePruning {
             root.right = pruneTree(root.right);
         }
 
-        if(isLeaf && root.val == 1) {
+        if(root.val == 1) {
             return root;
         } else if(isLeaf) {
             return null;
-        } else if(root.left != null || root.right != null) {
-            return root;
         } else {
-            return null;
+            return root.left != null || root.right != null
+                ? root
+                : null;
         }
-
     }
 
     public static void main(String[] args) {

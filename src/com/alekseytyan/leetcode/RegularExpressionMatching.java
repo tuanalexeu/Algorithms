@@ -16,8 +16,26 @@ public class RegularExpressionMatching {
         return false;
     }
 
-    public static boolean isMatch(String s, String p) {
-        // TODO
+    @SuppressWarnings("all")
+    public static boolean isMatch(String string, String pattern) {
+        int pid = 0;
+        for (int i = 0; i < string.length(); i++) {
+            char s = string.charAt(i);
+            char p = pattern.charAt(pid);
+
+            if(s == p || p == '.') {
+                continue;
+            }
+
+            if(p == '*') {
+                // It is garantueed that we have a valid characted before any '*'
+                // Thus, no IndexOutOfBoundsException will be thrown
+                char previous = pattern.charAt(pid - 1);
+                if(s == previous || previous == '.') {
+                    continue;
+                }
+            }
+        }
         return false;
     }
 
@@ -29,3 +47,10 @@ public class RegularExpressionMatching {
         System.out.println(output);
     }
 }
+
+
+/**
+ * afadfsdfavac
+ *
+ * a.*
+ */
